@@ -20,6 +20,7 @@ from rest_framework import routers
 from numplates.numplates import views
 
 router = routers.DefaultRouter()
+router.register(r'numplates', views.NumPlateViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
