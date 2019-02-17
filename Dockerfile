@@ -1,4 +1,4 @@
-FROM python:3.7.2-alpine3.9
+FROM python:3.6.8-alpine3.9
 
 # Set workdir
 WORKDIR /usr/src/app
@@ -18,7 +18,7 @@ RUN set -ex \
         zlib-dev
 
 # Install python requirements
-RUN python3.7 -m venv /venv \
+RUN python3 -m venv /venv \
     && /venv/bin/pip install -U pip \
     && LIBRARY_PATH=/lib:/usr/lib /bin/sh -c "/venv/bin/pip install --no-cache-dir -r /requirements.txt"
 
