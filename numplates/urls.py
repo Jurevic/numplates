@@ -20,11 +20,13 @@ from rest_framework import routers
 
 from numplates.cars import views as car_views
 from numplates.numplates import views as num_plate_views
+from numplates.owners import views as owner_views
 
 
 router = routers.DefaultRouter()
 router.register(r'cars', car_views.CarViewSet)
 router.register(r'numplates', num_plate_views.NumPlateViewSet)
+router.register(r'owners', owner_views.OwnerViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),

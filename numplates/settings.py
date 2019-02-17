@@ -42,8 +42,9 @@ INSTALLED_APPS = [
     'rest_framework',
 
     # Local apps
-    'numplates.numplates',
     'numplates.cars',
+    'numplates.numplates',
+    'numplates.owners',
 ]
 
 MIDDLEWARE = [
