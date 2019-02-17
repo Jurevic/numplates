@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
@@ -20,7 +21,7 @@ class OwnerListRetrieveTestCase(TestCase):
     def test_list_owners(self):
         """Owners can be listed"""
 
-        response = self.client.get('/api/v1/owners/')
+        response = self.client.get(reverse('owner-list'))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('results', response.data)
@@ -38,7 +39,7 @@ class OwnerListRetrieveTestCase(TestCase):
         """Owner can be retrieved"""
 
         response = self.client.get(
-            '/api/v1/owners/' + str(self.owner.id) + '/',
+            reverse('owner-list') + str(self.owner.id) + '/',
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -60,7 +61,7 @@ class OwnerCreateTestCase(TestCase):
         """Owner can be created"""
 
         response = self.client.post(
-            '/api/v1/owners/',
+            reverse('owner-list'),
             {
                 'first_name': 'Foo',
                 'last_name': 'Bar',
@@ -91,7 +92,7 @@ class OwnerUpdateTestCase(TestCase):
         """Owner can be updated"""
 
         response = self.client.put(
-            '/api/v1/owners/' + str(self.owner.id) + '/',
+            reverse('owner-list') + str(self.owner.id) + '/',
             {
                 'first_name': 'Foo',
                 'last_name': 'Bar',
@@ -109,7 +110,7 @@ class OwnerUpdateTestCase(TestCase):
         """Owner can be partially updated"""
 
         response = self.client.put(
-            '/api/v1/owners/' + str(self.owner.id) + '/',
+            reverse('owner-list') + str(self.owner.id) + '/',
             {
                 'first_name': 'Foo',
                 'last_name': 'Bar',
@@ -137,7 +138,7 @@ class OwnerDeleteTestCase(TestCase):
         """Owner can be deleted"""
 
         response = self.client.delete(
-            '/api/v1/owners/' + str(self.owner.id) + '/',
+            reverse('owner-list') + str(self.owner.id) + '/',
         )
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

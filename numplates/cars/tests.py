@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
@@ -19,7 +20,7 @@ class CarListRetrieveTestCase(TestCase):
     def test_list_cars(self):
         """Cars can be listed"""
 
-        response = self.client.get('/api/v1/cars/')
+        response = self.client.get(reverse('car-list'))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('results', response.data)
@@ -36,7 +37,7 @@ class CarListRetrieveTestCase(TestCase):
         """Car can be retrieved"""
 
         response = self.client.get(
-            '/api/v1/cars/' + str(self.car.id) + '/',
+            reverse('car-list') + str(self.car.id) + '/',
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -57,7 +58,7 @@ class CarCreateTestCase(TestCase):
         """Car can be created"""
 
         response = self.client.post(
-            '/api/v1/cars/',
+            reverse('car-list'),
             {'model': 'Mercedes Benz'},
         )
 
@@ -83,7 +84,7 @@ class CarUpdateTestCase(TestCase):
         """Car can be updated"""
 
         response = self.client.put(
-            '/api/v1/cars/' + str(self.car.id) + '/',
+            reverse('car-list') + str(self.car.id) + '/',
             {'model': 'Mercedes Benz'},
         )
 
@@ -97,7 +98,7 @@ class CarUpdateTestCase(TestCase):
         """Car can be partially updated"""
 
         response = self.client.patch(
-            '/api/v1/cars/' + str(self.car.id) + '/',
+            reverse('car-list') + str(self.car.id) + '/',
             {'model': 'Mercedes Benz'},
         )
 
@@ -120,7 +121,7 @@ class CarDeleteTestCase(TestCase):
         """Car can be deleted"""
 
         response = self.client.delete(
-            '/api/v1/cars/' + str(self.car.id) + '/',
+            reverse('car-list') + str(self.car.id) + '/',
         )
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)

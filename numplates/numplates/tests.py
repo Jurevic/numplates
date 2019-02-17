@@ -1,4 +1,5 @@
 from django.test import TestCase
+from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APIClient
 
@@ -19,7 +20,7 @@ class NumPlateListRetrieveTestCase(TestCase):
     def test_list_num_plates(self):
         """Num plates can be listed"""
 
-        response = self.client.get('/api/v1/numplates/')
+        response = self.client.get(reverse('numplate-list'))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIn('results', response.data)
@@ -36,7 +37,7 @@ class NumPlateListRetrieveTestCase(TestCase):
         """Num plate can be retrieved"""
 
         response = self.client.get(
-            '/api/v1/numplates/' + str(self.num_plate.id) + '/',
+            reverse('numplate-list') + str(self.num_plate.id) + '/',
         )
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -57,7 +58,7 @@ class NumPlateCreateTestCase(TestCase):
         """Num plate can be created"""
 
         response = self.client.post(
-            '/api/v1/numplates/',
+            reverse('numplate-list'),
             {'number': 'AAA000'},
         )
 
@@ -83,7 +84,7 @@ class NumPlateUpdateTestCase(TestCase):
         """Num plate can be updated"""
 
         response = self.client.put(
-            '/api/v1/numplates/' + str(self.num_plate.id) + '/',
+            reverse('numplate-list') + str(self.num_plate.id) + '/',
             {'number': 'AAA000'},
         )
 
@@ -97,7 +98,7 @@ class NumPlateUpdateTestCase(TestCase):
         """Num plate can be partially updated"""
 
         response = self.client.patch(
-            '/api/v1/numplates/' + str(self.num_plate.id) + '/',
+            reverse('numplate-list') + str(self.num_plate.id) + '/',
             {'number': 'AAA000'},
         )
 
@@ -120,7 +121,7 @@ class NumPlateDeleteTestCase(TestCase):
         """Num plate can be deleted"""
 
         response = self.client.delete(
-            '/api/v1/numplates/' + str(self.num_plate.id) + '/',
+            reverse('numplate-list') + str(self.num_plate.id) + '/',
         )
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
