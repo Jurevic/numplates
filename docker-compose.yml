@@ -1,0 +1,14 @@
+version: '2'
+
+services:
+  app:
+    build: .
+    environment:
+      DEBUG: "${DEBUG}"
+      MIGRATE: "${MIGRATE}"
+      COLLECT_STATIC: "${COLLECT_STATIC}"
+      START_CELERY_WORKER: "${START_CELERY_WORKER}"
+      SECRET_KEY: "${SECRET_KEY}"
+    restart: always
+    ports:
+      - "8000:8000"
