@@ -9,4 +9,6 @@ class NumPlateSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'number',
+            'owner',
+            'car',
         )
