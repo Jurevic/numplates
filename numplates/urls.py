@@ -17,10 +17,14 @@ from django.contrib import admin
 
 from django.urls import include, path
 from rest_framework import routers
-from numplates.numplates import views
+
+from numplates.cars import views as car_views
+from numplates.numplates import views as num_plate_views
+
 
 router = routers.DefaultRouter()
-router.register(r'numplates', views.NumPlateViewSet)
+router.register(r'cars', car_views.CarViewSet)
+router.register(r'numplates', num_plate_views.NumPlateViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
