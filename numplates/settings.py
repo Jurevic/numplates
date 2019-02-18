@@ -126,6 +126,13 @@ REST_FRAMEWORK = {
 }
 
 
+# Celery
+# http://docs.celeryproject.org/en/latest/index.html
+
+CELERY_IGNORE_RESULT = True
+CELERY_BROKER_URL = os.environ.get('CELERY_BROKER_URL', 'amqp://')
+
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 

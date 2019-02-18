@@ -15,7 +15,7 @@ class Migration(migrations.Migration):
             name='NumPlate',
             fields=[
                 ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('number', models.CharField(max_length=10)),
+                ('number', models.CharField(max_length=10, unique=True)),
             ],
         ),
     ]
