@@ -79,7 +79,3 @@ venv.bak/
 # Pycharm stuff
 .DS_Store
 .idea
-
-# Static, media
-static/*
-media/*
