@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.urls import reverse
 from unittest.mock import patch
 from rest_framework import status
+from rest_framework.serializers import ValidationError
 from rest_framework.test import APIClient, APIRequestFactory
 
 from .models import Car
@@ -170,4 +171,27 @@ class CarImageLoadTestCase(TestCase):
         self.assertRegex(
             image_name,
             r'^[a-f0-9]{8}-[a-f0-9]{4}-4[a-f0-9]{3}-[89aAbB][a-f0-9]{3}-[a-f0-9]{12}.png$'
+        )
+
+
+class CarSerializerValidationsTestCase(TestCase):
+    def test_multipla_is_not_a_car(self):
+        """Validation error is raised when someone believes Multipla is a
+        car"""
+
+        self.assertRaises(
+            ValidationError,
+            CarSerializer.validate_model,
+            CarSerializer(),
+            'Multipla',
+        )
+
+    def test_unsupported_image_formats(self):
+        """Validation error is raise on unsupported image format"""
+
+        self.assertRaises(
+            ValidationError,
+            CarSerializer.validate_image_url,
+            CarSerializer(),
+            'https://myimages.com/image.xps',
         )

@@ -1,9 +1,11 @@
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
+from rest_framework.serializers import ValidationError
 from rest_framework.test import APIClient
 
 from .models import Owner
+from .serializers import OwnerSerializer
 
 
 class OwnerListRetrieveTestCase(TestCase):
@@ -143,3 +145,27 @@ class OwnerDeleteTestCase(TestCase):
 
         self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
         self.assertEqual(Owner.objects.count(), 0)
+
+
+class OwnerSerializerValidationsTestCase(TestCase):
+    def test_first_name_must_start_with_capital(self):
+        """Validation error is raised if first name does not start with capital
+        letter"""
+
+        self.assertRaises(
+            ValidationError,
+            OwnerSerializer.validate_last_name,
+            OwnerSerializer(),
+            'jhon',
+        )
+
+    def test_last_name_must_start_with_capital(self):
+        """Validation error is raised if last name does not start with capital
+        letter"""
+
+        self.assertRaises(
+            ValidationError,
+            OwnerSerializer.validate_last_name,
+            OwnerSerializer(),
+            'snow',
+        )

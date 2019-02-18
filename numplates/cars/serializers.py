@@ -22,6 +22,23 @@ class CarSerializer(serializers.ModelSerializer):
             'image_url',
         )
 
+    def validate_model(self, value):
+        if 'Multipla' in value:
+            raise serializers.ValidationError(
+                'Multipla does not qualify as a car'
+            )
+
+        return value
+
+    def validate_image_url(self, value):
+        extension = value.split('.')[-1]
+        if extension not in ['png', 'jpg', 'jpeg']:
+            raise serializers.ValidationError(
+                'Unsupported image format. Valid formats are png, jpg and jpeg'
+            )
+
+        return value
+
     def create(self, validated_data):
         image_url = validated_data.get('image_url')
         if image_url:

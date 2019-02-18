@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.urls import reverse
 from rest_framework import status
+from rest_framework.serializers import ValidationError
 from rest_framework.test import APIClient, APIRequestFactory
 
 from numplates.owners.models import Owner
@@ -8,6 +9,7 @@ from numplates.cars.models import Car
 
 from .models import NumPlate
 from .views import NumPlateViewSet
+from .serializers import NumPlateSerializer
 
 
 class NumPlateListRetrieveTestCase(TestCase):
@@ -222,3 +224,21 @@ class NumPlateOwnersTestCase(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(response.data.get('owner'), None)
 
+
+class NumPlateSerializerValidationsTestCase(TestCase):
+    def test_allows_regular_lithuanian_number_format(self):
+        """Regular lithuanian car numbers are allowed"""
+        validated = NumPlateSerializer().validate_number('AAA000')
+
+        self.assertEqual(validated, 'AAA000')
+
+    def test_raise_validation_error_on_invalid_number_format(self):
+        """Validation error should be raised if invalid number format is
+        provided"""
+
+        self.assertRaises(
+            ValidationError,
+            NumPlateSerializer.validate_number,
+            NumPlateSerializer(),
+            '000AAA',
+        )
