@@ -3,4 +3,4 @@ from django.db import models
 
 class Car(models.Model):
     model = models.CharField(null=False, max_length=100)
-    image = models.URLField(null=True)
+    image_url = models.URLField(null=True)

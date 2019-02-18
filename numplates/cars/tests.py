@@ -144,7 +144,7 @@ class CarImageLoadTestCase(TestCase):
             reverse('car-list'),
             {
                 'model': 'Mercedes Benz',
-                'image': 'https://myimages.com/image.png',
+                'image_url': 'https://myimages.com/image.png',
             },
         )
 
@@ -156,7 +156,7 @@ class CarImageLoadTestCase(TestCase):
 
         # Image name is uuid with type
         self.assertRegex(
-            response.data.get('image'),
+            response.data.get('image_url'),
             r'^[0-9a-fA-F\-]{36}\.png$',
         )
 

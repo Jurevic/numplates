@@ -11,20 +11,20 @@ class CarSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'model',
-            'image',
+            'image_url',
         )
 
     def create(self, validated_data):
-        image_url = validated_data.get('image')
+        image_url = validated_data.get('image_url')
         if image_url:
-            validated_data['image'] = self._load_image(image_url)
+            validated_data['image_url'] = self._load_image(image_url)
 
         return super().create(validated_data)
 
     def update(self, instance, validated_data):
-        image_url = validated_data.get('image')
+        image_url = validated_data.get('image_url')
         if image_url:
-            validated_data['image'] = self._load_image(image_url)
+            validated_data['image_url'] = self._load_image(image_url)
 
         return super().update(instance, validated_data)
 
