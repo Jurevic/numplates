@@ -21,7 +21,7 @@ To create superuser:
 
 Admin urls is [localhost/admin/](localhost/admin/)
     
-##API Endpoints
+## API Endpoints
 
     GET /api/v1/
     GET, POST, PUT, PATCH, DELETE /api/v1/numplates/{:id/}
@@ -30,7 +30,7 @@ Admin urls is [localhost/admin/](localhost/admin/)
 
 ## Objects
 
-###Numplate
+### Numplate
 
 | Value  | Description                                |
 | ------ |:------------------------------------------:|
@@ -39,7 +39,7 @@ Admin urls is [localhost/admin/](localhost/admin/)
 | owner  | Assigned owner id                          |
 | car    | Assigned car id                            |
 
-###Car
+### Car
 
 | Value     | Description                |
 | --------- |:--------------------------:|
@@ -47,7 +47,7 @@ Admin urls is [localhost/admin/](localhost/admin/)
 | model     | Car model string           |
 | image_url | Car model image url string |
 
-###Owner
+### Owner
 
 | Value      | Description              |
 | ---------- |:------------------------:|
