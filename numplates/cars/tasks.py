@@ -6,13 +6,13 @@ from urllib import request, error
 
 
 @shared_task(name='load_car_image')
-def load_image(name, url):
-    file_name = os.path.join(
+def load_image(file_name, url):
+    absolute_path = os.path.join(
         settings.MEDIA_ROOT,
-        str(name) + '.' + url.split('.')[-1],
+        file_name,
     )
     try:
-        request.urlretrieve(url, file_name)
+        request.urlretrieve(url, absolute_path)
     except error.HTTPError:
         # Image cannot be downloaded, skip it
         pass
