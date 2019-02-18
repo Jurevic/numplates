@@ -8,7 +8,7 @@ To start application rename and setup .env-example to .env and run:
 
     $ docker-compose up --build
     
-Browse to [localhost:8000](localhost:8000)
+Browse to [localhost](localhost)
 
 # Usage
 
@@ -19,7 +19,7 @@ To create superuser:
     $ source /venv/bin/activate
     $ python3 manage.py createsuperuser
 
-Admin urls is [localhost:8000/admin/](localhost:8000/admin/)
+Admin urls is [localhost/admin/](localhost/admin/)
     
 ##API Endpoints
 
