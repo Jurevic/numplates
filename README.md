@@ -1,6 +1,6 @@
 # Lithuanian number plates REST API
 
-API enables creating car number plates their owners and cars
+API enables creating car number plates, their owners and cars.
 
 # Run
 
@@ -19,7 +19,7 @@ To create superuser:
     $ source /venv/bin/activate
     $ python3 manage.py createsuperuser
 
-Admin urls is [localhost/admin/](http://localhost/admin/)
+Admin URL is [localhost/admin/](http://localhost/admin/)
     
 ## API Endpoints
 
@@ -57,7 +57,7 @@ Admin urls is [localhost/admin/](http://localhost/admin/)
 
 # Development
 
-Create and activate virtual environment, install requirements
+Create and activate virtual environment, install requirements as follows:
 
     $ python3 -m venv venv
     $ source venv/bin/activate
