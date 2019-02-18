@@ -157,7 +157,7 @@ class CarImageLoadTestCase(TestCase):
         # Image name is uuid with type
         self.assertRegex(
             response.data.get('image_url'),
-            r'^[0-9a-fA-F\-]{36}\.png$',
+            r'^localhost:8000/media/[0-9a-fA-F\-]{36}\.png$',
         )
 
     @patch('numplates.cars.tasks.load_image.apply_async')

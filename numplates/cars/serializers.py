@@ -1,3 +1,4 @@
+from django.conf import settings
 from rest_framework import serializers
 from uuid import uuid4
 
@@ -5,7 +6,14 @@ from .models import Car
 from .tasks import load_image
 
 
+class MediaImageField(serializers.URLField):
+    def to_representation(self, value):
+        return settings.BASE_URL + settings.MEDIA_URL + value
+
+
 class CarSerializer(serializers.ModelSerializer):
+    image_url = MediaImageField(required=False)
+
     class Meta:
         model = Car
         fields = (
