@@ -1,3 +1,10 @@
 from django.contrib import admin
 
-# Register your models here.
+from.models import NumPlate
+
+
+class NumPlateAdmin(admin.ModelAdmin):
+    fields = ['number', 'owner', 'car']
+
+
+admin.site.register(NumPlate, NumPlateAdmin)
