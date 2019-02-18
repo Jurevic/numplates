@@ -16,6 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
+from django.shortcuts import redirect
 from django.urls import include, path
 from rest_framework import routers
 
@@ -30,7 +31,11 @@ router.register(r'numplates', num_plate_views.NumPlateViewSet)
 router.register(r'owners', owner_views.OwnerViewSet)
 
 urlpatterns = [
+    path('', lambda request: redirect('/api/v1/')),
     path('admin/', admin.site.urls),
     path('api/v1/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls', namespace='rest_framework'))
+    path(
+        'api-auth/',
+        include('rest_framework.urls', namespace='rest_framework')
+    )
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
