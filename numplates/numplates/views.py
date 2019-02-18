@@ -8,5 +8,5 @@ class NumPlateViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows number plates to be viewed or edited.
     """
-    queryset = NumPlate.objects.all()
+    queryset = NumPlate.objects.all().order_by('-id')
     serializer_class = NumPlateSerializer

@@ -8,5 +8,5 @@ class CarViewSet(viewsets.ModelViewSet):
     """
     API endpoint that allows cars to be viewed or edited.
     """
-    queryset = Car.objects.all()
+    queryset = Car.objects.all().order_by('-id')
     serializer_class = CarSerializer
